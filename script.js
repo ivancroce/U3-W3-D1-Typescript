@@ -11,7 +11,7 @@ const greet = (name) => {
 var greet = function (name) {
     return "Hello" + name;
 };
-console.log(greet(" " + "Epicode"));
+console.log(greet(" " + myName));
 /*  4) Specifica il tipo di ritorno della seguente funzione:
 const sum = (a: number, b: number) => {
   return a + b;
@@ -49,12 +49,82 @@ var numbers = [1, 2, 3]; // more complex, used for example: Array<string | numbe
 // 11) Crea una tupla per definire un array di 5 elementi, i primi 3 devono essere stringhe e gli ultimi due numeri.
 // A tuple in TypeScript is a fixed-length array where each element has a specific type and position.
 var myTuple = ["one", "two", "three", 4, 5];
-// 12) Qual è la differenza tra type e interface?
-// 13) Definisci un'interfaccia in TypeScript per un oggetto dotato di proprietà "firstname", "lastname", e "age".
-// 14) Crea un'interfaccia per un utente con email obbligatoria e telefono opzionale.
+// you can also use interface instead of type
+// Both of these define an object type called User
+var me = {
+    name: "Ivan",
+    age: 33
+};
+var user = {
+    firstname: "Mario",
+    lastname: "Rossi",
+    age: 35
+};
+console.log(user);
 // 15) Crea un array tipizzato di oggetti "Studente" con nome e voto.
-// 16) Crea un'interfaccia base "Veicolo" e estendila per creare "Auto".
+var students = [
+    { name: "Mario", score: 9 },
+    { name: "Lucia", score: 7 }
+];
+var students2 = [
+    { name: "Mario", score: 9 },
+    { name: "Lucia", score: 7 }
+];
 // 17) Crea un oggetto che implementi l'interfaccia Auto.
+var myCar = {
+    brand: "Fiat",
+    model: "127",
+    doors: 3
+};
 // 18) Cosa sono i Generics in TypeScript?
-// 19) È possibile avere più tipi generici in un'interfaccia?
-// 20) Crea un'interfaccia generica per una risposta API.
+// Generics = "Write reusable, type-safe code that works with any data type."
+// Generics allow you to create reusable components (functions, types, interfaces, classes)
+//  that work with any data type, while still keeping type safety.
+// Write once, use with many types.
+function identityNumber(value) {
+    return value;
+}
+function identityString(value) {
+    return value;
+}
+// You’d have to repeat the same logic for every type.
+function identity(value) {
+    return value;
+}
+// You can now use the same function with any type:
+identity(123); // returns a number
+identity("hello"); // returns a string
+identity(true); // returns a boolean
+// T is a type variable (stands for “Type”).
+// It’s a placeholder that gets replaced when the function is called.
+// You can name it anything (T, U, K, V, etc.).
+// Example with arrays:
+function firstItem(arr) {
+    return arr[0];
+}
+firstItem(["a", "b", "c"]); // returns "a"
+firstItem([1, 2, 3]); // returns 1
+var numberStringPair = {
+    first: 42,
+    second: "hello"
+};
+console.log(numberStringPair);
+var userDatePair = {
+    first: { name: "Alice" },
+    second: new Date()
+};
+console.log(userDatePair);
+// T is the generic type.
+// data can be any type depending on the API response.
+// message is optional (?) — it's often used for errors or feedback.
+// Example:
+var userResponse = {
+    success: true,
+    data: { name: "Alice", age: 30 }
+};
+console.log(userResponse);
+var productsResponse = {
+    success: true,
+    data: ["Laptop", "Mouse", "Keyboard"]
+};
+console.log(productsResponse);
